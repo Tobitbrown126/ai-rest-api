@@ -93,18 +93,18 @@ suite.
 ## Architecture
 
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for a detailed
-explanation of the layered architecture (routers → services → integrations),
+explanation of the layered architecture (routers -> services -> integrations),
 dependency injection, middleware pipeline, authentication design, and how
 streaming, structured output, and function calling are implemented.
 
 High-level request flow:
 
 ```
-Client → Middleware (CORS, Rate Limit, Logging, Auth Context)
-       → Router (validation via Pydantic)
-       → Service layer (business logic, prompt construction)
-       → AIService (OpenAI Responses API) / DatabaseService (SQLAlchemy)
-       → Response (Pydantic-validated JSON)
+Client -> Middleware (CORS, Rate Limit, Logging, Auth Context)
+       -> Router (validation via Pydantic)
+       -> Service layer (business logic, prompt construction)
+       -> AIService (OpenAI Responses API) / DatabaseService (SQLAlchemy)
+       -> Response (Pydantic-validated JSON)
 ```
 
 ## Folder Structure
@@ -120,14 +120,14 @@ ai-rest-api/
 ├── alembic.ini
 ├── Dockerfile
 ├── docker-compose.yml
-├── main.py                    # FastAPI app entrypoint
-├── config.py                  # Settings (env-driven configuration)
-├── database.py                # SQLAlchemy engine/session
-├── models.py                  # ORM models
-├── schemas.py                 # Pydantic request/response models
-├── dependencies.py             # FastAPI DI providers
-├── auth.py                    # API key + JWT auth utilities
-├── logging_config.py          # Loguru setup
+├── main.py # FastAPI app entrypoint
+├── config.py # Settings (env-driven configuration)
+├── database.py # SQLAlchemy engine/session
+├── models.py # ORM models
+├── schemas.py # Pydantic request/response models
+├── dependencies.py # FastAPI DI providers
+├── auth.py # API key + JWT auth utilities
+├── logging_config.py # Loguru setup
 ├── routers/
 │   ├── chat.py
 │   ├── translate.py
@@ -137,7 +137,7 @@ ai-rest-api/
 │   ├── prompt.py
 │   └── health.py
 ├── services/
-│   ├── ai_service.py           # OpenAI Responses API wrapper
+│   ├── ai_service.py # OpenAI Responses API wrapper
 │   ├── chat_service.py
 │   ├── translation_service.py
 │   ├── summary_service.py
@@ -191,9 +191,9 @@ python3 --version
    marketplace (`Ctrl+Shift+X` / `Cmd+Shift+X`).
 3. Optionally install **Pylance** (usually bundled with the Python
    extension) and **Ruff** or **Black** for linting/formatting.
-4. Open the project folder: `File → Open Folder... → ai-rest-api`.
+4. Open the project folder: `File -> Open Folder... -> ai-rest-api`.
 5. Once the virtual environment is created (next step), select it as the
-   interpreter: `Ctrl+Shift+P` → `Python: Select Interpreter` →
+   interpreter: `Ctrl+Shift+P` -> `Python: Select Interpreter` ->
    choose `./venv/bin/python` (or `.\venv\Scripts\python.exe` on Windows).
 
 ### 3. Create a Virtual Environment
@@ -243,7 +243,7 @@ API_KEY=some-strong-random-string
 JWT_SECRET_KEY=another-strong-random-string
 ```
 
-**Never commit `.env` to version control** — it is already listed in
+**Never commit `.env` to version control** - it is already listed in
 `.gitignore`.
 
 ### 6. Obtaining an OpenAI API Key
@@ -253,14 +253,14 @@ JWT_SECRET_KEY=another-strong-random-string
 2. Navigate to **API Keys** in the left sidebar (or
    `https://platform.openai.com/api-keys`).
 3. Click **Create new secret key**, name it (e.g. `ai-rest-api-dev`), and
-   copy the key immediately — it is only shown once.
+   copy the key immediately - it is only shown once.
 4. Paste it into your `.env` file as `OPENAI_API_KEY`.
 5. Ensure your OpenAI account has billing configured, since API usage is
    metered.
 
 ### 7. Database Setup
 
-By default the app uses **SQLite** with zero configuration — a file named
+By default the app uses **SQLite** with zero configuration - a file named
 `ai_rest_api.db` will be created automatically on first run in the project
 root.
 
@@ -320,13 +320,13 @@ uvicorn main:app --host 0.0.0.0 --port 9000 --reload
 Every AI endpoint (everything except `/`, `/health`, and `/version`) is
 protected. Provide **either** of the following on each request:
 
-**Option A — API Key**
+**Option A - API Key**
 
 ```
 X-API-Key: <your API_KEY from .env>
 ```
 
-**Option B — Bearer Token (JWT)**
+**Option B - Bearer Token (JWT)**
 
 ```
 Authorization: Bearer <a JWT signed with your JWT_SECRET_KEY>
@@ -470,7 +470,7 @@ curl -N -X POST http://localhost:8000/chat \
    - Key: `X-API-Key`
    - Value: `{{api_key}}` (define `api_key` as a collection variable)
    - Add to: **Header**
-4. Create a new request: `POST {{base_url}}/chat`, Body → raw → JSON:
+4. Create a new request: `POST {{base_url}}/chat`, Body -> raw -> JSON:
    ```json
    { "message": "Hi there" }
    ```
@@ -479,16 +479,16 @@ curl -N -X POST http://localhost:8000/chat \
    [API Endpoints](#api-endpoints) table above.
 
 You can also import the OpenAPI spec directly into Postman:
-`File → Import → Link → http://localhost:8000/openapi.json`.
+`File -> Import -> Link -> http://localhost:8000/openapi.json`.
 
 ## Swagger & ReDoc Documentation
 
 Once the server is running:
 
 - **Swagger UI**: [http://localhost:8000/docs](http://localhost:8000/docs)
-  — interactive, try-it-out documentation.
+  - interactive, try-it-out documentation.
 - **ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
-  — clean, reference-style documentation.
+  - clean, reference-style documentation.
 - **Raw OpenAPI spec**: [http://localhost:8000/openapi.json](http://localhost:8000/openapi.json)
 
 ## Testing
@@ -513,8 +513,8 @@ pytest --cov=. --cov-report=term-missing
 
 ## Error Handling
 
-All errors — whether from validation, authentication, the AI provider, or
-unexpected server failures — return a consistent JSON envelope:
+All errors - whether from validation, authentication, the AI provider, or
+unexpected server failures - return a consistent JSON envelope:
 
 ```json
 {
